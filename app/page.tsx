@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
@@ -80,7 +81,7 @@ export default function LandingPage() {
               {navItems.map((item, index) => (
                 <Link
                   key={index}
-                  className="text-lg font-medium hover:text-purple-400 transition-colors"
+                  className="text-lg font-medium text-white  hover:text-purple-400 transition-colors"
                   href={item.href}
                 >
                   {item.label}
@@ -88,11 +89,11 @@ export default function LandingPage() {
               ))}
               <Button
                 variant="ghost"
-                className="justify-start text-lg font-medium hover:text-purple-400 hover:bg-gray-800"
+                className="text-md text-purple-600 bg-white font-medium hover:text-purple-400 hover:bg-purple-200"
               >
                 Log in
               </Button>
-              <Button className="bg-purple-600 hover:bg-purple-700 text-white">
+              <Button className="text-md bg-purple-600 hover:bg-purple-700 text-white">
                 Sign up
               </Button>
             </nav>
@@ -130,7 +131,7 @@ export default function LandingPage() {
                 </Button>
                 <Button
                   variant="outline"
-                  className="text-purple-400 border-purple-400 hover:bg-purple-400/10"
+                  className="text-purple-400 border-purple-400 hover:bg-purple-400"
                 >
                   Learn More
                 </Button>
