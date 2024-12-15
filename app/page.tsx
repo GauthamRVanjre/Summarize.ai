@@ -1,184 +1,17 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { FileText, Zap, Clock, BarChart, Check, Menu } from "lucide-react";
+import { Check } from "lucide-react";
+import HeroSection from "@/components/HeroSection";
+import Features from "@/components/Features";
 
 export default function LandingPage() {
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const navItems = [
-    { href: "#features", label: "Features" },
-    { href: "#pricing", label: "Pricing" },
-    { href: "#testimonials", label: "Testimonials" },
-  ];
-
   return (
-    <div className="flex flex-col min-h-screen bg-gray-950 text-gray-100">
-      <header className="fixed w-full px-4 lg:px-6 h-14 flex items-center justify-between z-50 bg-gray-950/80 backdrop-blur-sm">
-        <Link className="flex items-center justify-center" href="#">
-          <FileText className="h-6 w-6 text-purple-400" />
-          <span className="ml-2 text-lg font-bold text-purple-400">
-            SummarizeAI
-          </span>
-        </Link>
-        <nav className="hidden md:flex items-center space-x-4 lg:space-x-6">
-          {navItems.map((item, index) => (
-            <Link
-              key={index}
-              className="text-sm font-medium hover:text-purple-400 transition-colors"
-              href={item.href}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-        <div className="hidden md:flex items-center space-x-4">
-          <Button
-            variant="ghost"
-            className="text-gray-100 hover:text-purple-400 hover:bg-gray-800"
-          >
-            Log in
-          </Button>
-          <Button className="bg-purple-600 hover:bg-purple-700 text-white">
-            Sign up
-          </Button>
-        </div>
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <Menu className="h-6 w-6 text-gray-100" />
-              <span className="sr-only">Toggle menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent
-            side="right"
-            className="w-[300px] sm:w-[400px] bg-gray-900"
-          >
-            <SheetHeader>
-              <SheetTitle className="text-left text-purple-400">
-                Menu
-              </SheetTitle>
-            </SheetHeader>
-            <nav className="flex flex-col space-y-4 mt-4">
-              {navItems.map((item, index) => (
-                <Link
-                  key={index}
-                  className="text-lg font-medium text-white  hover:text-purple-400 transition-colors"
-                  href={item.href}
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <Button
-                variant="ghost"
-                className="text-md text-purple-600 bg-white font-medium hover:text-purple-400 hover:bg-purple-200"
-              >
-                Log in
-              </Button>
-              <Button className="text-md bg-purple-600 hover:bg-purple-700 text-white">
-                Sign up
-              </Button>
-            </nav>
-          </SheetContent>
-        </Sheet>
-      </header>
+    <>
       <main className="flex-1">
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-950">
-          <div className="container px-4 md:px-6 relative z-10">
-            <div className="flex flex-col items-center space-y-4 text-center">
-              <div
-                className="space-y-2"
-                style={{
-                  transform: `translateY(${scrollY * 0.5}px)`,
-                  opacity: Math.max(0, 1 - scrollY / 500),
-                }}
-              >
-                <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600">
-                  Summarize PDFs in Seconds
-                </h1>
-                <p className="mx-auto max-w-[700px] text-purple-100 md:text-xl/relaxed lg:text-2xl/relaxed xl:text-3xl/relaxed">
-                  Transform lengthy PDFs into concise summaries with our
-                  AI-powered tool. Save time and boost productivity.
-                </p>
-              </div>
-              <div
-                className="space-x-4"
-                style={{
-                  transform: `translateY(${scrollY * 0.2}px)`,
-                  opacity: Math.max(0, 1 - scrollY / 700),
-                }}
-              >
-                <Button className="bg-purple-600 hover:bg-purple-700 text-white">
-                  Try for Free
-                </Button>
-                <Button
-                  variant="outline"
-                  className="text-purple-400 border-purple-400 hover:bg-purple-400"
-                >
-                  Learn More
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section id="features" className="w-full py-24 md:py-32">
-          <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
-              Features
-            </h2>
-            <div className="grid gap-12 lg:grid-cols-3">
-              {[
-                {
-                  icon: Zap,
-                  title: "AI-Powered Summarization",
-                  description:
-                    "Our advanced AI algorithms extract key information from your PDFs quickly and accurately.",
-                },
-                {
-                  icon: Clock,
-                  title: "Time-Saving",
-                  description:
-                    "Get concise summaries in seconds, allowing you to digest information from long documents efficiently.",
-                },
-                {
-                  icon: BarChart,
-                  title: "Customizable Output",
-                  description:
-                    "Adjust summary length and focus to suit your specific needs and preferences.",
-                },
-              ].map((feature, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col items-center space-y-4 transition-all duration-300 transform hover:scale-105"
-                >
-                  <feature.icon className="h-12 w-12 text-purple-400" />
-                  <h3 className="text-xl font-bold">{feature.title}</h3>
-                  <p className="text-center text-gray-400">
-                    {feature.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <HeroSection />
+        <Features />
         <section id="pricing" className="w-full py-24 md:py-32 bg-gray-900">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
@@ -354,6 +187,6 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
-    </div>
+    </>
   );
 }

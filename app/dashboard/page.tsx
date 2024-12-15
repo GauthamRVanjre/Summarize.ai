@@ -7,10 +7,13 @@ const page = async () => {
   const user = await getUser();
   return (
     <>
-      <div>
-        Hello, {user.given_name} with id {user.id}
-      </div>
-      <ClientComponentUser />
+      <main className="pt-12">
+        <h1>Weclome</h1>
+        <div className="text-white">
+          Hello, {user?.given_name} with id {user?.id}
+        </div>
+        <ClientComponentUser />
+      </main>
     </>
   );
 };
