@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import jwksClient from "jwks-rsa";
 import jwt, { Jwt } from "jsonwebtoken";
+import prisma from "@/prisma/prisma";
 
 // The Kinde issuer URL should already be in your `.env` file
 // from when you initially set up Kinde. This will fetch your
@@ -27,7 +28,16 @@ export async function POST(req: Request) {
     // Handle various events
     if (event.type === "user.created") {
       console.log("User ", event.data);
+      const userDetails = event.data.user;
       // add user to database
+      await prisma.user.create({
+        data: {
+          email: userDetails.email,
+          firstName: userDetails.first_name,
+          lastName: userDetails.last_name,
+          id: userDetails.id,
+        },
+      });
     }
 
     return NextResponse.json({ status: 200, data: event.data });
