@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import jwksClient from "jwks-rsa";
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt, { Jwt } from "jsonwebtoken";
 
 // The Kinde issuer URL should already be in your `.env` file
 // from when you initially set up Kinde. This will fetch your
@@ -15,13 +15,14 @@ export async function POST(req: Request) {
     const token = await req.text();
 
     // Decode the token
-    const { header } = jwt.decode(token, { complete: true });
+    const decodedToken = jwt.decode(token, { complete: true }) as Jwt;
+    const { header } = decodedToken;
     const { kid } = header;
 
     // Verify the token
     const key = await client.getSigningKey(kid);
     const signingKey = key.getPublicKey();
-    const event = await jwt.verify(token, signingKey);
+    const event: any = await jwt.verify(token, signingKey);
 
     // Handle various events
     if (event.type === "user.created") {
