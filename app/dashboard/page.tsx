@@ -9,9 +9,7 @@ const page = async () => {
     <>
       <main className="pt-12">
         <h1>Weclome</h1>
-        <div className="text-white">
-          Hello, {user?.given_name} with id {user?.id}
-        </div>
+        <div className="text-white">Hello, {JSON.stringify(user)}</div>
         <ClientComponentUser />
       </main>
     </>
