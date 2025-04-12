@@ -10,7 +10,10 @@ const Testimonials = () => {
         </h2>
         <div className="grid gap-8 lg:grid-cols-3">
           {TestimonialItems.map((testimonial, index) => (
-            <Card key={index} className="bg-gray-800 border-gray-700">
+            <Card
+              key={index}
+              className="bg-gray-800 border-gray-700 hover:scale-105 transition-all duration-300"
+            >
               <CardContent className="p-6">
                 <p className="text-lg mb-4 text-gray-200">
                   "{testimonial.quote}"

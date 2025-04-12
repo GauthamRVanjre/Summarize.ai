@@ -14,7 +14,7 @@ const PricingSection = () => {
           {PricingItems.map((plan, index) => (
             <Card
               key={index}
-              className="flex flex-col justify-between bg-gray-800 border-gray-700"
+              className="flex flex-col justify-between bg-gray-800 border-gray-700 hover:scale-105 transition-all duration-300"
             >
               <CardContent className="p-6">
                 <h3 className="text-2xl font-bold text-purple-400 mb-2">
