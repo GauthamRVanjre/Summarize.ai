@@ -1,5 +1,3 @@
-import React from "react";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -8,21 +6,22 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { FileText, Menu } from "lucide-react";
 import { navItems } from "@/lib/constants";
 import {
-  RegisterLink,
   LoginLink,
   LogoutLink,
+  RegisterLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { FileText, Menu } from "lucide-react";
+import Link from "next/link";
 
 const Navbar = async () => {
   const { isAuthenticated } = getKindeServerSession();
   const isLoggedIn = await isAuthenticated();
   return (
     <header className="fixed w-full px-4 lg:px-6 h-14 flex items-center justify-between z-50 bg-gray-950/80 backdrop-blur-sm">
-      <Link className="flex items-center justify-center" href="#">
+      <Link className="flex items-center justify-center" href="/">
         <FileText className="h-6 w-6 text-purple-400" />
         <span className="ml-2 text-lg font-bold text-purple-400">
           SummarizeAI
